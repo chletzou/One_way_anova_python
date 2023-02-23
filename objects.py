@@ -10,12 +10,12 @@ class test:
 
 class game:
     #constructor
-    def __init__(self, name, A1, B, A2, C):
+    def __init__(self, name, A, B, C, D):
         self.name = name
-        self.A1 = A1
+        self.A = A
         self.B = B 
-        self.A2 = A2
         self.C = C
+        self.D = D
 
 class user:
     #constructor
