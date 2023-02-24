@@ -2,10 +2,12 @@ import numpy as np
 import pandas as pd
 from statsmodels.stats.anova import AnovaRM
 import csv
+import os
 from objects import test
 from objects import game
 from objects import user
 
+num_col = list
 
 def read_data():
     #開啟csv並讀取進nested list
@@ -14,7 +16,7 @@ def read_data():
         data_list = list(reader)
         #print(data_list)
     num_row = len(data_list[1])
-    num_col = len(data_list)
+    globals()['num_col'] = len(data_list)
     #print(num_col)
     #print(num_row)
 
@@ -44,26 +46,30 @@ def read_data():
     for cur_col in range(1, num_col):
         globals()['user'+str(cur_col)] = user(globals()['game'+str(cur_col)+'_'+str(1)], globals()['game'+str(cur_col)+'_'+str(2)], globals()['game'+str(cur_col)+'_'+str(3)], globals()['game'+str(cur_col)+'_'+str(4)])       
     #print(user3.G4.D.type)
+
+    #建data的資料夾
+    data_dir = './data'
+    if not os.path.isdir(data_dir):
+        os.mkdir(data_dir)
+    #if not os.path.isdir (os.path.join(data_dir))
     
-'''
-    #存進
-    for i in range(1, num_col):
-        #globals()['user'+str(i)] = user(data_list[i][8], data_list[i][33], data_list[i][58], data_list[i][83])
-        #process_list = list[]
-        #process_list = list.append(globals()['user'+str(i)] )
-        #print(globals()['user'+str(i)].G1)
-        for j in range(1, 14, 4):
-            globals()['game'+str(j)] = game(data_list[i][7+j], data_list[i][8+j], data_list[i][13+j], data_list[i][20+j], data_list[i][25+j])
-            globals()['game'+str(j+1)] = game(data_list[i][32+j], data_list[i][8+j+1], data_list[i][13+j], data_list[i][20+j], data_list[i][25+j])
-            globals()['game'+str(j+2)] = game(data_list[i][7+j+2], data_list[i][8+j+2], data_list[i][13+j], data_list[i][20+j], data_list[i][25+j])
-            globals()['game'+str(j+3)] = game(data_list[i][7+j+3], data_list[i][8+j+3], data_list[i][13+j], data_list[i][20+j], data_list[i][25+j])
-
-    #print(user1.G1)
-    print(game2.A)
-'''  
-
-def write_data():
-    with
+    #寫32個csv 存 4個遊戲 -> A/B、A/C test -> 4個分數(imm, rea, enj, com)
+    global num_col
+    with open('./data/Half_life_alyx_AB.csv', 'w', newline='') as f:
+        #寫標題進表格
+        field_name = ['id', 'type', 'score']
+        writer = csv.DictWriter(f, fieldnames = field_name)
+        writer.writeheader()
+        #分別寫 id, type, score進去
+        for i in range(1, 2*(num_col-1)):
+            writer.writerow({'id': 'user', 'type'})
+    
+    with open('./data/Half_life_alyx_AC', 'w') as f:
+        pass
+    with open('./data/_AB', 'w') as f:
+        pass
+    with open('./data/Half_life_alyx_AB', 'w') as f:
+        pass
 
     
 
@@ -75,5 +81,4 @@ def anova(f):
 
 if __name__ == '__main__':
     read_data()
-    #write_data()
     #anova()
