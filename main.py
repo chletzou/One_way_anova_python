@@ -17,7 +17,7 @@ def read_data():
         data_list = list(reader)
         #print(data_list)
     num_row = len(data_list[1])
-    globals()['num_col'] = len(data_list)
+    num_col = len(data_list)
     #print(num_col)
     #print(num_row)
 
@@ -46,7 +46,7 @@ def read_data():
     # 存game 進 user
     for cur_col in range(1, num_col):
         globals()['user'+str(cur_col)] = user(globals()['game'+str(cur_col)+'_'+str(1)], globals()['game'+str(cur_col)+'_'+str(2)], globals()['game'+str(cur_col)+'_'+str(3)], globals()['game'+str(cur_col)+'_'+str(4)])       
-    print(user1.G1.A.type)
+    #print(user1.G1.A.type)
 
     #建data的資料夾
     data_dir = './data'
@@ -462,15 +462,17 @@ def anova():
     #perform the repeated measures ANOVA
     #列出資料夾data中所有csv
     allcsv = os.listdir('./data')
-    print(allcsv)
+    #print(allcsv)
     for f in allcsv:
         file = pd.read_csv(os.path.join( data_dir +'/'+ f))
-        print(AnovaRM(data=file, depvar= 'score', subject= 'id',  within= ['type']).fit())
         #export the result
+        result = AnovaRM(data=file, depvar= 'score', subject= 'id',  within= ['type']).fit()
+        print(result)
+        table = result.anova_table
         #with open(os.path.join(result_dir+'/'+f), 'w', newline='') as csvfile:
         #    writer = csv.writer(csvfile)
-        #    writer.writerows(AnovaRM(data=file, depvar= 'score', subject= 'id',  within= ['type']).fit())
-        #AnovaRM(data=file, depvar= 'score', subject= 'id',  within= ['type']).fit().to_csv(os.path.join(result_dir+'/'+f), sep = ',', index= True, header= True )
+        table.to_csv(os.path.join( result_dir +'/'+f ), sep = ',', index= True, header= True)
+        #AnovaRM(datato_csv(os.path.join(result_dir+'/'+f), sep = ',', index= True, header= True )
     
 
 if __name__ == '__main__':
