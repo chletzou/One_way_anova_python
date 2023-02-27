@@ -1,9 +1,5 @@
 id,type,score
-1,CrossHaptics,6
-1,Audio based,4
-2,Audio based,6
-2,CrossHaptics,5
-3,CrossHaptics,4
-3,Audio based,5
-4,CrossHaptics,4
-4,Audio based,1
+1,A: CrossHaptics,6
+1,C: Audio based,4
+2,C: Audio based,7
+2,A: CrossHaptics,6

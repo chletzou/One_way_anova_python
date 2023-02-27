@@ -1,9 +1,5 @@
 id,type,score
-1,Controller Only,3
-1,CrossHaptics,4
-2,CrossHaptics,5
-2,Controller Only,5
-3,CrossHaptics,3
-3,Controller Only,5
-4,CrossHaptics,5
-4,Controller Only,6
+1,B: Controller Only,6
+1,A: CrossHaptics,6
+2,A: CrossHaptics,6
+2,B: Controller Only,5

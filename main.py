@@ -22,26 +22,26 @@ def read_data():
     #print(num_row)
 
     #存資料進test
-    i=1 #命名index用的參數
+
     for cur_col in range(1, num_col):
+        i=1 #命名index用的參數
         for cur_row in range(1, num_row ):
             if data_list[0][cur_row] == '遊戲體驗模式':
                 globals()['test'+str(cur_col)+'_'+str(i)] = test(data_list[cur_col][cur_row], data_list[cur_col][cur_row+1], data_list[cur_col][cur_row+2], data_list[cur_col][cur_row+3], data_list[cur_col][cur_row+4])
-                i+=1
-        i-=16     
-    #print(globals()['test'+str(3)+'_'+str(8)].com)
+                i+=1     
+    #print(globals()['test'+str(2)+'_'+str(1)].imm)
 
     #存test 進 game
-    j=1 #命名index用的參數
+
     for cur_col in range(1, num_col):
+        j=1 #命名index用的參數
         k=1 #標示test1-k的參數
-        for cur_row in range(1, num_row ):
+        for cur_row in range(1, num_row//2 ):
             if data_list[0][cur_row] == '現在進行的遊戲':
-                globals()['game'+str(cur_col)+'_'+str(j)] = game(data_list[cur_col][cur_row], globals()['test'+str(cur_col)+'_'+str(k)], globals()['test'+str(cur_col)+'_'+str(k+1)], globals()['test'+str(cur_col)+'_'+str(k+2)], globals()['test'+str(cur_col)+'_'+str(k+3)] )
+                globals()['game'+str(cur_col)+'_'+str(j)] = game(data_list[cur_col][cur_row], globals()['test'+str(cur_col)+'_'+str(k)], globals()['test'+str(cur_col)+'_'+str(k+1)], globals()['test'+str(cur_col)+'_'+str(k+8)], globals()['test'+str(cur_col)+'_'+str(k+9)] )
                 j+=1
-                k+=4
-        j-=4        
-    #print(game4_4.D.com)
+                k+=2      
+    #(game1_1.A.imm)
 
     # 存game 進 user
     for cur_col in range(1, num_col):
