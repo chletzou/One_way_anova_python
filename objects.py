@@ -19,11 +19,10 @@ class game:
 
 class user:
     #constructor
-    def __init__(self, G1, G2, G3, G4):
+    def __init__(self, G1, G2, G3):
         self.G1 = G1
         self.G2 = G2
         self.G3 = G3
-        self.G4 = G4
 
 
 #if __name__ == '__main__':
